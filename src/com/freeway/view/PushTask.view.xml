@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="SlMockUser" parent="global:SlMockUser">
+      <Property name="defaultDisplayProperty">realname</Property>
+      <PropertyDef name="userId"/>
+      <PropertyDef name="realname"/>
+    </DataType>
+    <DataType name="Project" parent="SlProject">
+      <Property name="defaultDisplayProperty">projectName</Property>
+      <PropertyDef name="projectName"/>
+    </DataType>
+    <DataType name="Environment" parent="SlProject">
+      <Property name="defaultDisplayProperty">environment</Property>
+      <PropertyDef name="environment"/>
+    </DataType>
+  </Model>
+  <View>
+    <AutoForm id="autoformPushTask" layoutConstraint="padding:5">
+      <Property name="cols">260,260,260,60,60,60,60</Property>
+      <Property name="labelAlign">left</Property>
+      <Property name="createPrivateDataSet">true</Property>
+      <AutoFormElement id="autoformelementProject">
+        <Property name="trigger">datasetdropdownProject</Property>
+        <Property name="label">项目：</Property>
+        <Property name="name">project</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement id="autoformelementEnvironment">
+        <Property name="trigger">datasetdropdownEnvironment</Property>
+        <Property name="label">环境：</Property>
+        <Property name="name">environment</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement id="autoformelementRealName">
+        <Property name="trigger">datasetdropdownMockUser</Property>
+        <Property name="label">用户：</Property>
+        <Property name="name">realname</Property>
+        <Property name="readOnly">false</Property>
+        <Editor/>
+      </AutoFormElement>
+      <Button>
+        <Property name="caption">授  信</Property>
+        <Property name="action">ajaxactionPushUser</Property>
+      </Button>
+      <Button>
+        <Property name="caption">机  审</Property>
+        <Property name="action">ajaxactionPushOrder</Property>
+      </Button>
+    </AutoForm>
+    <Container layout="vbox" layoutConstraint="padding:5">
+      <Label>
+        <Property name="text">推单记录：</Property>
+      </Label>
+      <DataGrid id="datagridPushRecord" layoutConstraint="padding:5">
+        <Property name="dataSet">datasetPushRecord</Property>
+        <Property name="readOnly">true</Property>
+        <DataColumn name="createdAt">
+          <Property name="property">createdAt</Property>
+          <Property name="caption">推送时间</Property>
+          <Property name="align">center</Property>
+          <Property name="width">150</Property>
+          <Property name="dataType">DateTime</Property>
+          <Property name="displayFormat">Y-m-d H:m:s</Property>
+        </DataColumn>
+        <DataColumn name="orderId">
+          <Property name="property">orderId</Property>
+          <Property name="caption">订单号</Property>
+          <Property name="align">center</Property>
+          <Property name="width">150</Property>
+        </DataColumn>
+        <DataColumn name="project">
+          <Property name="property">project</Property>
+          <Property name="caption">项目名称</Property>
+          <Property name="align">center</Property>
+          <Property name="width">150</Property>
+        </DataColumn>
+        <DataColumn name="environment">
+          <Property name="property">environment</Property>
+          <Property name="caption">项目环境</Property>
+          <Property name="align">center</Property>
+          <Property name="width">150</Property>
+        </DataColumn>
+        <DataColumn name="content">
+          <Property name="property">content</Property>
+          <Property name="caption">推单内容</Property>
+          <Property name="align">center</Property>
+          <Property name="editorType">None</Property>
+        </DataColumn>
+        <DataColumn name="result">
+          <Property name="property">result</Property>
+          <Property name="caption">推单结果</Property>
+          <Property name="editorType">TextArea</Property>
+          <Property name="align">center</Property>
+        </DataColumn>
+      </DataGrid>
+      <DataSet id="datasetPushRecord">
+        <Property name="dataType">[SlPushRecord]</Property>
+        <Property name="dataProvider">pushTaskService#getPushRecord</Property>
+        <Property name="readOnly">true</Property>
+      </DataSet>
+    </Container>
+    <DataSet id="datasetMockUser">
+      <Property name="dataProvider">mockUserService#getAll</Property>
+      <Property name="dataType">[SlMockUser]</Property>
+      <Property name="readOnly">true</Property>
+    </DataSet>
+    <DataSetDropDown id="datasetdropdownMockUser">
+      <Property name="dataSet">datasetMockUser</Property>
+    </DataSetDropDown>
+    <AjaxAction id="ajaxactionPushOrder">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoformPushTask">var entity = autoformPushTask.get(&quot;entity&quot;);&#xD;
+var project = entity.get(&quot;project&quot;);&#xD;
+var environment = entity.get(&quot;environment&quot;);&#xD;
+var realname = entity.get(&quot;realname&quot;);&#xD;
+//判断是否输入，是则将对象作为参数传递到后台，否则提示用户&#xD;
+if(project &amp;&amp; environment &amp;&amp; realname){&#xD;
+	entity.set(&quot;phase&quot;, &quot;LOAN&quot;);&#xD;
+	self.set(&quot;parameter&quot;,entity);&#xD;
+}else{&#xD;
+    dorado.MessageBox.alert(&quot;请先选择项目，环境和用户！&quot;);&#xD;
+    arg.processDefault=false;&#xD;
+}</ClientEvent>
+      <ClientEvent name="onSuccess" signature="self,arg,datasetPushRecord">//获取返回值&#xD;
+var result = self.get(&quot;returnValue&quot;);&#xD;
+//如果用户名密码正确，则跳转到返回值中的url&#xD;
+if(result.result){&#xD;
+    dorado.MessageBox.alert(result.msg);&#xD;
+}else{&#xD;
+//否则弹出返回值中的异常消息提示&#xD;
+    dorado.MessageBox.alert(result.msg,{title:&quot;系统提示&quot;,icon:&quot;ERROR&quot;});&#xD;
+}&#xD;
+datasetPushRecord.flushAsync();</ClientEvent>
+      <Property name="service">pushTaskService#pushOrder</Property>
+    </AjaxAction>
+    <DataSetDropDown id="datasetdropdownProject">
+      <Property name="dataSet">datasetProject</Property>
+    </DataSetDropDown>
+    <DataSetDropDown id="datasetdropdownEnvironment">
+      <Property name="dataSet">datasetEnvironment</Property>
+    </DataSetDropDown>
+    <DataSet id="datasetProject">
+      <Property name="dataProvider">projectService#getAll</Property>
+      <Property name="dataType">[Project]</Property>
+    </DataSet>
+    <DataSet id="datasetEnvironment">
+      <Property name="dataProvider">projectService#getAll</Property>
+      <Property name="dataType">[Environment]</Property>
+    </DataSet>
+    <AjaxAction id="ajaxactionPushUser">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoformPushTask">var entity = autoformPushTask.get(&quot;entity&quot;);&#xD;
+var project = entity.get(&quot;project&quot;);&#xD;
+var environment = entity.get(&quot;environment&quot;);&#xD;
+var realname = entity.get(&quot;realname&quot;);&#xD;
+//判断是否输入，是则将对象作为参数传递到后台，否则提示用户&#xD;
+if(project &amp;&amp; environment &amp;&amp; realname){&#xD;
+	entity.set(&quot;phase&quot;, &quot;PRELOAN&quot;);&#xD;
+	self.set(&quot;parameter&quot;,entity);&#xD;
+}else{&#xD;
+    dorado.MessageBox.alert(&quot;请先选择项目，环境和用户！&quot;);&#xD;
+    arg.processDefault=false;&#xD;
+}</ClientEvent>
+      <ClientEvent name="onSuccess" signature="self,arg,datasetPushRecord">//获取返回值&#xD;
+var result = self.get(&quot;returnValue&quot;);&#xD;
+//如果用户名密码正确，则跳转到返回值中的url&#xD;
+if(result.result){&#xD;
+    dorado.MessageBox.alert(result.msg);&#xD;
+}else{&#xD;
+//否则弹出返回值中的异常消息提示&#xD;
+    dorado.MessageBox.alert(result.msg,{title:&quot;系统提示&quot;,icon:&quot;ERROR&quot;});&#xD;
+}&#xD;
+datasetPushRecord.flushAsync();</ClientEvent>
+      <Property name="service">pushTaskService#pushOrder</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

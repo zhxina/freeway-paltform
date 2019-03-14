@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="Apache Tomcat v7.0"/>
+  <fixed facet="dorado7.map"/>
+  <fixed facet="dorado7.criteriabuilder"/>
+  <fixed facet="dorado7.qrcode"/>
+  <fixed facet="dorado7.tageditor"/>
+  <fixed facet="dorado7.desktop"/>
+  <fixed facet="jst.web"/>
+  <fixed facet="dorado7.raphael"/>
+  <fixed facet="dorado7.jdbc"/>
+  <fixed facet="java"/>
+  <fixed facet="dorado7.samplecenter"/>
+  <fixed facet="dorado7.chart"/>
+  <fixed facet="dorado7.htmleditor"/>
+  <fixed facet="dorado7.touch"/>
+  <fixed facet="wst.jsdt.web"/>
+  <fixed facet="dorado7.core"/>
+  <fixed facet="dorado7.canvas"/>
+  <fixed facet="dorado7.hibernate"/>
+  <fixed facet="dorado7.sourceeditor"/>
+  <installed facet="java" version="1.7"/>
+  <installed facet="jst.web" version="3.0"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="dorado7.core" version="7.3"/>
+  <installed facet="dorado7.criteriabuilder" version="1.0"/>
+  <installed facet="dorado7.desktop" version="1.0"/>
+  <installed facet="dorado7.hibernate" version="1.0"/>
+  <installed facet="dorado7.htmleditor" version="1.0"/>
+  <installed facet="dorado7.jdbc" version="1.0"/>
+  <installed facet="dorado7.map" version="1.0"/>
+  <installed facet="dorado7.qrcode" version="1.0"/>
+  <installed facet="dorado7.raphael" version="1.0"/>
+  <installed facet="dorado7.sourceeditor" version="1.0"/>
+  <installed facet="dorado7.tageditor" version="1.0"/>
+  <installed facet="dorado7.touch" version="1.0"/>
+  <installed facet="dorado7.canvas" version="1.0"/>
+  <installed facet="dorado7.chart" version="1.0"/>
+  <installed facet="dorado7.samplecenter" version="1.0"/>
+</faceted-project>
