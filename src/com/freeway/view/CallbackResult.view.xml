@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <DataSet id="datasetResult">
+      <Property name="dataType">[SlEngineResult]</Property>
+      <Property name="dataProvider">engineResultService#queryForCondition</Property>
+      <Property name="pageSize">10</Property>
+    </DataSet>
+    <AutoForm id="autoformCondition">
+      <Property name="createPrivateDataSet">true</Property>
+      <Property name="cols">240,240,240,240</Property>
+      <Property name="labelSeparator">:</Property>
+      <AutoFormElement layoutConstraint="align:left">
+        <Property name="name">projectCode</Property>
+        <Property name="label">项目名称</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement layoutConstraint="align:left">
+        <Property name="label">阶段</Property>
+        <Property name="name">phase</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement layoutConstraint="align:left">
+        <Property name="name">userId</Property>
+        <Property name="label">用户ID</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement layoutConstraint="align:left">
+        <Property name="label">订单号</Property>
+        <Property name="name">orderId</Property>
+        <Editor/>
+      </AutoFormElement>
+    </AutoForm>
+    <ToolBar>
+      <ToolBarButton id="buttonQuery">
+        <ClientEvent name="onClick" signature="self,arg,autoformCondition,datasetResult">//获取autoformCondition绑定的实体对象&#xD;
+var entity = autoformCondition.get(&quot;entity&quot;);&#xD;
+//将实体对象作为参数传入，并异步刷新&#xD;
+datasetResult.set(&quot;parameter&quot;,entity).flushAsync();</ClientEvent>
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -40px</Property>
+      </ToolBarButton>
+      <DataPilot id="datapilotResult">
+        <Property name="dataSet">datasetResult</Property>
+        <Property name="itemCodes">pages,pageSize</Property>
+      </DataPilot>
+    </ToolBar>
+    <DataGrid id="DataGridResult">
+      <Property name="dataSet">datasetResult</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="filterMode">serverSide</Property>
+      <Property name="showFilterBar">true</Property>
+      <Property name="height">350</Property>
+      <DataColumn name="projectCode">
+        <Property name="property">projectCode</Property>
+        <Property name="caption">项目名称</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="productCode">
+        <Property name="property">productCode</Property>
+        <Property name="caption">产品类型</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="phase">
+        <Property name="property">phase</Property>
+        <Property name="caption">阶段</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="traceUid">
+        <Property name="property">traceUid</Property>
+        <Property name="caption">tuid</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="userId">
+        <Property name="property">userId</Property>
+        <Property name="caption">用户ID</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="orderId">
+        <Property name="property">orderId</Property>
+        <Property name="caption">订单号</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="result">
+        <Property name="property">result</Property>
+        <Property name="caption">机审结果</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="headCode">
+        <Property name="property">headCode</Property>
+        <Property name="caption">头码</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="backCode">
+        <Property name="property">backCode</Property>
+        <Property name="caption">尾码</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="intervalsInDay">
+        <Property name="property">intervalsInDay</Property>
+        <Property name="caption">可再借天数</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="creditLine">
+        <Property name="property">creditLine</Property>
+        <Property name="caption">可再借额度</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+    </DataGrid>
+  </View>
+</ViewConfig>
