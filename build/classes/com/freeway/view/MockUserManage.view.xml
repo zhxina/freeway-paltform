@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="SlMockUser" parent="global:SlMockUser">
+      <PropertyDef name="userId">
+        <Property name="label">用户ID</Property>
+        <Property name="readOnly">false</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="datasetSlMockUser">
+      <Property name="dataType">[SlMockUser]</Property>
+      <Property name="dataProvider">mockUserService#queryForCondition</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="pageSize">10</Property>
+    </DataSet>
+    <AutoForm id="autoformCondition">
+      <Property name="cols">300,300</Property>
+      <Property name="createPrivateDataSet">true</Property>
+      <Property name="labelSeparator">:</Property>
+      <AutoFormElement>
+        <Property name="name">realname</Property>
+        <Property name="property">realname</Property>
+        <Property name="label">真实姓名</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">phone</Property>
+        <Property name="property">phone</Property>
+        <Property name="label">手机号码</Property>
+        <Editor/>
+      </AutoFormElement>
+    </AutoForm>
+    <ToolBar>
+      <DataPilot id="datapilotMockUser">
+        <ClientEvent name="onClick">datasetSlMockUser.set(&quot;readOnly&quot;,false);&#xD;
+</ClientEvent>
+        <Property name="dataSet">datasetSlMockUser</Property>
+        <Property name="itemCodes">pages,pageSize</Property>
+        <Property name="visible">true</Property>
+      </DataPilot>
+      <ToolBarButton id="buttonQuery">
+        <ClientEvent name="onClick" signature="self,arg,autoformCondition,datasetSlMockUser">//获取autoformCondition绑定的实体对象&#xD;
+var entity = autoformCondition.get(&quot;entity&quot;);&#xD;
+//将实体对象作为参数传入，并异步刷新&#xD;
+datasetSlMockUser.set(&quot;parameter&quot;,entity).flushAsync();</ClientEvent>
+        <Property name="caption">查询</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -20px -40px	</Property>
+      </ToolBarButton>
+      <ToolBarButton id="buttonEdit">
+        <ClientEvent name="onClick" signature="self,arg,dialogEdit,datasetSlMockUser">datasetSlMockUser.set(&quot;readOnly&quot;,false);&#xD;
+dialogEdit.show();</ClientEvent>
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px	</Property>
+      </ToolBarButton>
+      <ToolBarButton id="buttonAdd">
+        <ClientEvent name="onClick" signature="self,arg,datasetSlMockUser,dialogEdit1">datasetSlMockUser.set(&quot;readOnly&quot;,false);&#xD;
+datasetSlMockUser.insert();&#xD;
+dialogEdit1.show();&#xD;
+&#xD;
+</ClientEvent>
+        <Property name="caption">新增</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="buttonDel">
+        <ClientEvent name="onClick" signature="self,arg,datasetSlMockUser,updateactionSave">&#xD;
+var entity = datasetSlMockUser.get(&quot;data:#&quot;);&#xD;
+if(entity){&#xD;
+    dorado.MessageBox.confirm(&quot;确认要删除记录吗？&quot;, function(){&#xD;
+        entity.remove();&#xD;
+        updateactionSave.execute();&#xD;
+    })&#xD;
+}</ClientEvent>
+        <Property name="caption">删除</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="datagridMockUser">
+      <Property name="dataSet">datasetSlMockUser</Property>
+      <Property name="height">350</Property>
+      <Property name="readOnly">true</Property>
+      <DataColumn name="userId">
+        <Property name="property">userId</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">用户Id</Property>
+      </DataColumn>
+      <DataColumn name="realname">
+        <Property name="property">realname</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">真实姓名</Property>
+      </DataColumn>
+      <DataColumn name="phone">
+        <Property name="property">phone</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">手机号</Property>
+      </DataColumn>
+      <DataColumn name="bankcard">
+        <Property name="property">bankcard</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">银行卡</Property>
+      </DataColumn>
+      <DataColumn name="idcard">
+        <Property name="property">idcard</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">身份证号</Property>
+      </DataColumn>
+      <DataColumn name="status">
+        <Property name="property">status</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">状态</Property>
+      </DataColumn>
+      <DataColumn name="createdAt">
+        <Property name="property">createdAt</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">创建时间</Property>
+      </DataColumn>
+      <DataColumn name="updatedAt">
+        <Property name="property">updatedAt</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">修改时间</Property>
+      </DataColumn>
+    </DataGrid>
+    <UpdateAction id="updateactionSave">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoFormMockUser">var entity = autoFormMockUser.get(&quot;entity&quot;);&#xD;
+var createdAt = entity.get(&quot;createdAt&quot;);&#xD;
+var updatedAt = entity.get(&quot;updatedAt&quot;);&#xD;
+//var status = entity.get(&quot;status&quot;);&#xD;
+var today = new Date();&#xD;
+//entity.set(&quot;createdAt&quot;,today);&#xD;
+entity.set(&quot;updatedAt&quot;,today);&#xD;
+//entity.set(&quot;createdAt&quot;,&quot;2019-3-17&quot;);&#xD;
+//entity.set(&quot;updatedAt&quot;,&quot;2019-3-17&quot;);&#xD;
+//entity.set(&quot;status&quot;,&quot;0&quot;);&#xD;
+self.set(&quot;parameter&quot;,entity);&#xD;
+</ClientEvent>
+      <Property name="dataResolver">mockUserService#saveAll</Property>
+      <Property name="executingMessage">正在保存...</Property>
+      <Property name="successMessage">保存成功！</Property>
+      <Property name="hotkey">ctrl+s</Property>
+      <UpdateItem>
+        <Property name="dataSet">datasetSlMockUser</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="insertActionSave">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoFormMockUser1">var entity = autoFormMockUser1.get(&quot;entity&quot;);&#xD;
+var createdAt = entity.get(&quot;createdAt&quot;);&#xD;
+var updatedAt = entity.get(&quot;updatedAt&quot;);&#xD;
+var status = entity.get(&quot;status&quot;);&#xD;
+var today = new Date();&#xD;
+entity.set(&quot;createdAt&quot;,today);&#xD;
+entity.set(&quot;updatedAt&quot;,today);&#xD;
+entity.set(&quot;status&quot;,&quot;0&quot;);&#xD;
+self.set(&quot;parameter&quot;,entity);&#xD;
+</ClientEvent>
+      <Property name="dataResolver">mockUserService#saveAll</Property>
+      <Property name="executingMessage">正在保存...</Property>
+      <Property name="hotkey">ctrl+s</Property>
+      <Property name="successMessage">保存成功！</Property>
+      <UpdateItem>
+        <Property name="dataSet">datasetSlMockUser</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <Dialog id="dialogEdit">
+      <Property name="caption">用户详情</Property>
+      <Property name="width">500</Property>
+      <Property name="height">240</Property>
+      <Buttons>
+        <Button id="buttonSave">
+          <ClientEvent name="onClick" signature="self,arg,dialogEdit,updateactionSave">//在保存操作完成后的回调函数中将编辑弹出框隐藏&#xD;
+updateactionSave.execute(function(){&#xD;
+    dialogEdit.hide();&#xD;
+})</ClientEvent>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="buttonCancel">
+          <ClientEvent name="onClick" signature="self,arg,datasetSlMockUser,dialogEdit">&#xD;
+datasetSlMockUser.get(&quot;data:#&quot;).cancel();&#xD;
+dialogEdit.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -280px -220px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm id="autoFormMockUser" layoutConstraint="padding:10">
+          <Property name="dataSet">datasetSlMockUser</Property>
+          <Property name="cols">200,*</Property>
+          <Property name="labelAlign">left</Property>
+          <AutoFormElement>
+            <Property name="name">userId</Property>
+            <Property name="property">userId</Property>
+            <Property name="label">用户Id</Property>
+            <Property name="labelSeparator">:</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">idcard</Property>
+            <Property name="property">idcard</Property>
+            <Property name="label">身份证号</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Property name="readOnly">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">realname</Property>
+            <Property name="property">realname</Property>
+            <Property name="label">真实姓名</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">phone</Property>
+            <Property name="property">phone</Property>
+            <Property name="label">手机号码</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Property name="readOnly">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">status</Property>
+            <Property name="property">status</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">bankcard</Property>
+            <Property name="property">bankcard</Property>
+            <Property name="label">银行卡</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Property name="readOnly">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdAt</Property>
+            <Property name="property">createdAt</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <Dialog id="dialogEdit1">
+      <Property name="caption">用户详情</Property>
+      <Property name="width">500</Property>
+      <Property name="height">240</Property>
+      <Buttons>
+        <Button id="buttonSave1">
+          <ClientEvent name="onClick" signature="self,arg,dialogEdit1,insertActionSave">//在保存操作完成后的回调函数中将编辑弹出框隐藏&#xD;
+insertActionSave.execute(function(){&#xD;
+    dialogEdit1.hide();&#xD;
+})</ClientEvent>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="buttonCancel1">
+          <ClientEvent name="onClick" signature="self,arg,datasetSlMockUser,dialogEdit1">&#xD;
+datasetSlMockUser.get(&quot;data:#&quot;).cancel();&#xD;
+dialogEdit1.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -280px -220px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm id="autoFormMockUser1" layoutConstraint="padding:10">
+          <Property name="dataSet">datasetSlMockUser</Property>
+          <Property name="cols">200,*</Property>
+          <Property name="labelAlign">left</Property>
+          <AutoFormElement>
+            <Property name="name">userId</Property>
+            <Property name="property">userId</Property>
+            <Property name="label">用户Id</Property>
+            <Property name="labelSeparator">:</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">idcard</Property>
+            <Property name="property">idcard</Property>
+            <Property name="label">身份证号</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Property name="readOnly">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">realname</Property>
+            <Property name="property">realname</Property>
+            <Property name="label">真实姓名</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">phone</Property>
+            <Property name="property">phone</Property>
+            <Property name="label">手机号码</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Property name="readOnly">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">bankcard</Property>
+            <Property name="property">bankcard</Property>
+            <Property name="label">银行卡</Property>
+            <Property name="labelAlign">left</Property>
+            <Property name="labelSeparator">：</Property>
+            <Property name="readOnly">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">status</Property>
+            <Property name="property">status</Property>
+            <Property name="visible">false</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+  </View>
+</ViewConfig>

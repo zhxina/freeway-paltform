@@ -35,6 +35,8 @@ view.get(&quot;^logout&quot;).addListener(&quot;onClick&quot;, function(self, ar
         <Property name="caption">风控基础数据</Property>
         <MenuItem>
           <Property name="caption">用户管理</Property>
+          <Property name="tags">menuitem</Property>
+          <Property name="userData">com.freeway.view.MockUserManage.d</Property>
         </MenuItem>
         <MenuItem>
           <Property name="caption">环境管理</Property>
