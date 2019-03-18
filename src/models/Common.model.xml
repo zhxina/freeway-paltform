@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Model>
-  <DataType name="SlCompany" meta="x:45;y:170">
+  <DataType name="SlCompany" meta="x:135;y:255">
     <Property name="matchType">com.freeway.entity.SlCompany</Property>
     <PropertyDef name="companyId">
       <Property name="dataType">int</Property>
@@ -209,18 +209,60 @@
       <Property name="dataType">int</Property>
     </PropertyDef>
     <PropertyDef name="projectName">
+      <Property></Property>
+    </PropertyDef>
+    <PropertyDef name="projectCode">
+      <Property></Property>
+    </PropertyDef>
+    <PropertyDef name="environment">
+      <Property></Property>
+    </PropertyDef>
+    <PropertyDef name="url">
+      <Property></Property>
+    </PropertyDef>
+    <PropertyDef name="productCode">
+      <Property></Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="SlEngineResult">
+    <Property name="matchType">com.freeway.entity.SlEngineResult</Property>
+    <PropertyDef name="id">
+      <Property name="dataType">int</Property>
+    </PropertyDef>
+    <PropertyDef name="productCode">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="phase">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="traceUid">
       <Property/>
     </PropertyDef>
     <PropertyDef name="projectCode">
       <Property/>
     </PropertyDef>
-    <PropertyDef name="environment">
+    <PropertyDef name="userId">
       <Property/>
     </PropertyDef>
-    <PropertyDef name="url">
+    <PropertyDef name="orderId">
       <Property/>
     </PropertyDef>
-    <PropertyDef name="productCode">
+    <PropertyDef name="result">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="headCode">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="backCode">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="intervalsInDay">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="creditLine">
+      <Property/>
+    </PropertyDef>
+    <PropertyDef name="creditLevel">
       <Property/>
     </PropertyDef>
   </DataType>

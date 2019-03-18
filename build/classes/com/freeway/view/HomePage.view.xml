@@ -44,6 +44,8 @@ view.get(&quot;^logout&quot;).addListener(&quot;onClick&quot;, function(self, ar
         </MenuItem>
         <MenuItem>
           <Property name="caption">回调记录</Property>
+          <Property name="userData">com.freeway.view.CallbackResult.d</Property>
+          <Property name="tags">menuitem</Property>
         </MenuItem>
         <MenuItem>
           <Property name="caption">token管理</Property>

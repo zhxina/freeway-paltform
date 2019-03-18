@@ -3,7 +3,6 @@ package com.freeway.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * sl_last_order:
  */
@@ -29,12 +28,10 @@ public class SlLastOrder implements Serializable {
 	private int orderId;
 
 	public SlLastOrder() {
-
 		super();
 	}
 
 	public SlLastOrder(int id, int type, int orderId) {
-
 		super();
 		this.id = id;
 		this.type = type;
@@ -42,7 +39,6 @@ public class SlLastOrder implements Serializable {
 	}
 
 	public void setId(int id) {
-
 		this.id = id;
 	}
 
@@ -50,35 +46,30 @@ public class SlLastOrder implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	public int getId() {
-
 		return id;
 	}
 
 	public void setType(int type) {
-
 		this.type = type;
 	}
 
 	@Column(name = "type", nullable = false)
 	public int getType() {
-
 		return type;
 	}
 
 	public void setOrderId(int orderId) {
-
 		this.orderId = orderId;
 	}
 
 	@Column(name = "order_id")
 	public int getOrderId() {
-
 		return orderId;
 	}
 
 	public String toString() {
-
-		return "SlLastOrder [id=" + id + ",type=" + type + ",orderId=" + orderId + "]";
+		return "SlLastOrder [id=" + id + ",type=" + type + ",orderId="
+				+ orderId + "]";
 	}
 
 }
