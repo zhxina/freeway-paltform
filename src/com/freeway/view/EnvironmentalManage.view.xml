@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dataType1"/>
+  </Model>
+  <View>
+    <DataSet id="dsProjects">
+      <Property name="dataType">[SlProject]</Property>
+      <Property name="dataProvider">projectService#queryForCondition</Property>
+      <Property name="readOnly">false</Property>
+      <Property name="pageSize">10</Property>
+    </DataSet>
+    <AutoForm id="autoformCondition">
+      <Property name="createPrivateDataSet">true</Property>
+      <Property name="cols">350,350,350,350</Property>
+      <Property name="labelSeparator">：</Property>
+      <AutoFormElement>
+        <Property name="name">projectName</Property>
+        <Property name="label">项目名称</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">projectCode</Property>
+        <Property name="label">项目代码</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">productCode</Property>
+        <Property name="label">产品代码</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="label">项目环境</Property>
+        <Property name="name">environment</Property>
+        <Editor/>
+      </AutoFormElement>
+    </AutoForm>
+    <ToolBar>
+      <DataPilot>
+        <Property name="dataSet">dsProjects</Property>
+        <Property name="itemCodes">pages,pageSize</Property>
+      </DataPilot>
+      <ToolBarButton id="buttonAdd">
+        <ClientEvent name="onClick" signature="self,arg,dsProjects,dialogEdit">dsProjects.insert();&#xD;
+dialogEdit.show();</ClientEvent>
+        <Property name="caption">新增</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="buttonDel">
+        <ClientEvent name="onClick" signature="self,arg,dsProjects,actionUpdate">var entity = dsProjects.get(&quot;data:#&quot;);&#xD;
+if(entity){&#xD;
+    dorado.MessageBox.confirm(&quot;确认要删除记录吗？&quot;, function(){&#xD;
+        entity.remove();&#xD;
+        actionUpdate.execute();&#xD;
+    })&#xD;
+}</ClientEvent>
+        <Property name="caption">删除</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="buttonEdit">
+        <ClientEvent name="onClick" signature="self,arg,dialogEdit">dialogEdit.show();</ClientEvent>
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="buttonQuery">
+        <ClientEvent name="onClick" signature="self,arg,autoformCondition,dsProjects">//获取autoformCondition绑定的实体对象&#xD;
+var entity = autoformCondition.get(&quot;entity&quot;);&#xD;
+//将实体对象作为参数传入，并异步刷新&#xD;
+dsProjects.set(&quot;parameter&quot;,entity).flushAsync();</ClientEvent>
+        <Property name="caption">查询</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -20px -40px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="datagridProject">
+      <Property name="dataSet">dsProjects</Property>
+      <Property name="height">500</Property>
+      <Property name="readOnly">true</Property>
+      <DataColumn name="projectName">
+        <Property name="property">projectName</Property>
+        <Property name="caption">项目名称</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="projectCode">
+        <Property name="property">projectCode</Property>
+        <Property name="caption">项目代码</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="productCode">
+        <Property name="property">productCode</Property>
+        <Property name="caption">产品代码</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="environment">
+        <Property name="property">environment</Property>
+        <Property name="caption">项目环境</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="url">
+        <Property name="property">url</Property>
+        <Property name="caption">域名地址</Property>
+      </DataColumn>
+    </DataGrid>
+    <UpdateAction id="actionUpdate">
+      <Property name="executingMessage">正在保存...</Property>
+      <Property name="successMessage">保存成功!</Property>
+      <Property name="dataResolver">projectService#saveAll</Property>
+      <Property name="hotkey">ctrl+s</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsProjects</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <Dialog id="dialogEdit">
+      <Property name="caption">环境详情</Property>
+      <Property name="height">250</Property>
+      <Property name="width">350</Property>
+      <Buttons>
+        <Button id="buttonSave">
+          <ClientEvent name="onClick" signature="self,arg,dialogEdit,actionUpdate">//在保存操作完成后的回调函数中将编辑弹出框隐藏&#xD;
+actionUpdate.execute(function(){&#xD;
+    dialogEdit.hide();&#xD;
+})</ClientEvent>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="buttonCancel">
+          <ClientEvent name="onClick" signature="self,arg,dsProjects,dialogEdit">dsProjects.get(&quot;data:#&quot;).cancel();&#xD;
+dialogEdit.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -280px -220px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm id="autoformproject">
+          <Property name="createPrivateDataSet">true</Property>
+          <Property name="labelSeparator">：</Property>
+          <Property name="cols">*</Property>
+          <Property name="dataSet">dsProjects</Property>
+          <AutoFormElement>
+            <Property name="name">projectName</Property>
+            <Property name="label">项目名称</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">projectCode</Property>
+            <Property name="label">项目代码</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">productCode</Property>
+            <Property name="label">产品代码</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="label">项目环境</Property>
+            <Property name="name">environment</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">url</Property>
+            <Property name="label">域名地址</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+  </View>
+</ViewConfig>
