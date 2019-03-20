@@ -3,6 +3,7 @@ package com.freeway.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+
 /**
  * sl_project:
  */
@@ -42,12 +43,19 @@ public class SlProject implements Serializable {
 	 */
 	private String productCode;
 
+	/**
+	 * product_name:
+	 */
+	private String productName;
+
 	public SlProject() {
+
 		super();
 	}
 
-	public SlProject(int projectId, String projectName, String projectCode,
-			String environment, String url, String productCode) {
+	public SlProject(int projectId, String projectName, String projectCode, String environment, String url,
+			String productCode, String productName) {
+
 		super();
 		this.projectId = projectId;
 		this.projectName = projectName;
@@ -55,9 +63,11 @@ public class SlProject implements Serializable {
 		this.environment = environment;
 		this.url = url;
 		this.productCode = productCode;
+		this.productName = productName;
 	}
 
 	public void setProjectId(int projectId) {
+
 		this.projectId = projectId;
 	}
 
@@ -65,59 +75,81 @@ public class SlProject implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "project_id", nullable = false)
 	public int getProjectId() {
+
 		return projectId;
 	}
 
 	public void setProjectName(String projectName) {
+
 		this.projectName = projectName;
 	}
 
 	@Column(name = "project_name", length = 50)
 	public String getProjectName() {
+
 		return projectName;
 	}
 
 	public void setProjectCode(String projectCode) {
+
 		this.projectCode = projectCode;
 	}
 
 	@Column(name = "project_code", length = 100)
 	public String getProjectCode() {
+
 		return projectCode;
 	}
 
 	public void setEnvironment(String environment) {
+
 		this.environment = environment;
 	}
 
 	@Column(name = "environment", length = 45)
 	public String getEnvironment() {
+
 		return environment;
 	}
 
 	public void setUrl(String url) {
+
 		this.url = url;
 	}
 
 	@Column(name = "url", length = 500)
 	public String getUrl() {
+
 		return url;
 	}
 
 	public void setProductCode(String productCode) {
+
 		this.productCode = productCode;
 	}
 
 	@Column(name = "product_code", length = 50)
 	public String getProductCode() {
+
 		return productCode;
 	}
 
+	public void setProductName(String productName) {
+
+		this.productName = productName;
+	}
+
+	@Column(name = "product_name", length = 20)
+	public String getProductName() {
+
+		return productName;
+	}
+
 	public String toString() {
-		return "SlProject [projectId=" + projectId + ",projectName="
-				+ projectName + ",projectCode=" + projectCode + ",environment="
-				+ environment + ",url=" + url + ",productCode=" + productCode
-				+ "]";
+
+		return "SlProject [projectId=" + projectId + ",projectName=" + projectName + ",projectCode=" + projectCode
+				+ ",environment=" + environment + ",url=" + url + ",productCode=" + productCode + ",productName="
+				+ productName + "]";
 	}
 
 }
