@@ -12,10 +12,50 @@
       </Property>
     </Label>
     <ToolBar>
-      <ClientEvent name="onReady">view.get(&quot;^menuitem&quot;).addListener(&quot;onClick&quot;, function(self, arg, iframeMain){&#xD;
-    iframeMain.set(&quot;path&quot;,self.get(&quot;userData&quot;));&#xD;
-});&#xD;
+      <ClientEvent name="onReady">//view.get(&quot;^menuitem&quot;).addListener(&quot;onClick&quot;, function(self, arg, iframeMain){&#xD;
+    //iframeMain.set(&quot;path&quot;,self.get(&quot;userData&quot;));&#xD;
+//});&#xD;
 &#xD;
+//找到tags为logout的控件集合，为控件添加onClick事件监听器即点击后，弹出对话框&#xD;
+//view.get(&quot;^logout&quot;).addListener(&quot;onClick&quot;, function(self, arg, dialogLogout){&#xD;
+    //dialogLogout.show();&#xD;
+//});&#xD;
+&#xD;
+//获取tags属性为menuitem的控件集合并为它们绑定onClick事件&#xD;
+view.get(&quot;^menuitem&quot;).addListener(&quot;onClick&quot;, function(self, arg){&#xD;
+	&#xD;
+    // 定义Tab变量&#xD;
+    var tab = {};&#xD;
+     &#xD;
+    // 制定当前的tab为IFrameTab&#xD;
+    tab.$type = &quot;IFrame&quot;;&#xD;
+    // 定义新Tab的标签&#xD;
+    tab.caption = self.get(&quot;caption&quot;);&#xD;
+    // 定义Tab的Path&#xD;
+    // get(&quot;userData&quot;)表示获取当前菜单的UserData属性，&#xD;
+    tab.path = self.get(&quot;userData&quot;);&#xD;
+    tab.name = self.get(&quot;caption&quot;);&#xD;
+    tab.closeable = true;&#xD;
+    tab.icon = self.get(&quot;icon&quot;);&#xD;
+     &#xD;
+    // 如果当前菜单项有指定的Path则打开新的tab&#xD;
+    if (tab.path) {&#xD;
+        with (view.get(&quot;#tabcontrolMain&quot;)) {&#xD;
+            // 根据name查找是否已经打开过当前的Tab。&#xD;
+            // 如果没有打开过，则需要添加一个新的Tab&#xD;
+            var currentTab = getTab(tab.name);&#xD;
+            if (currentTab) {&#xD;
+                tab = currentTab;&#xD;
+            } else {&#xD;
+                // 获取ID为tabcontrolMain的对象，并添加一个新的Tab&#xD;
+                tab = addTab(tab);&#xD;
+            }&#xD;
+            // 设定当前的Tab为指定的tab&#xD;
+            set(&quot;currentTab&quot;, tab);&#xD;
+        }&#xD;
+    }&#xD;
+});&#xD;
+ &#xD;
 //找到tags为logout的控件集合，为控件添加onClick事件监听器即点击后，弹出对话框&#xD;
 view.get(&quot;^logout&quot;).addListener(&quot;onClick&quot;, function(self, arg, dialogLogout){&#xD;
     dialogLogout.show();&#xD;
@@ -130,6 +170,7 @@ view.get(&quot;^logout&quot;).addListener(&quot;onClick&quot;, function(self, ar
       </ToolBarButton>
       <Separator/>
     </ToolBar>
+    <IFrame id="iframeMain"/>
     <AjaxAction id="ajaxactionLogout">
       <ClientEvent name="onSuccess">//获取返回值&#xD;
 var result = self.get(&quot;returnValue&quot;);&#xD;
@@ -141,7 +182,6 @@ if(result.result){&#xD;
 }</ClientEvent>
       <Property name="service">loginService#doLogout</Property>
     </AjaxAction>
-    <IFrame id="iframeMain"/>
     <Dialog id="dialogLogout">
       <Property name="caption">系统登出</Property>
       <Property name="width">400</Property>
@@ -166,5 +206,6 @@ if(result.result){&#xD;
       </Children>
       <Tools/>
     </Dialog>
+    <TabControl id="tabcontrolMain"/>
   </View>
 </ViewConfig>
