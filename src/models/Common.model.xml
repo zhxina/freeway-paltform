@@ -223,6 +223,9 @@
     <PropertyDef name="productCode">
       <Property></Property>
     </PropertyDef>
+    <PropertyDef name="productName">
+      <Property/>
+    </PropertyDef>
   </DataType>
   <DataType name="SlEngineResult">
     <Property name="matchType">com.freeway.entity.SlEngineResult</Property>
@@ -230,40 +233,40 @@
       <Property name="dataType">int</Property>
     </PropertyDef>
     <PropertyDef name="productCode">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="phase">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="traceUid">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="projectCode">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="userId">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="orderId">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="result">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="headCode">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="backCode">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="intervalsInDay">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="creditLine">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
     <PropertyDef name="creditLevel">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
   </DataType>
 </Model>

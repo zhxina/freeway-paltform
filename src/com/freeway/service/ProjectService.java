@@ -1,12 +1,15 @@
 package com.freeway.service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.annotations.common.util.StringHelper;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +29,36 @@ public class ProjectService {
     public Collection<SlProject> getAll(){
         return slProjectDao.getAll();
     }
+
+	@DataProvider
+	public Collection<SlProject> getProductsByProjectName(String projectName) {
+
+		Query queryResult = slProjectDao
+				.createQuery("from SlProject where project_name=? group by productName").setParameter(0, projectName);
+		return queryResult.list();
+	}
+
+	@DataProvider
+	public Collection<SlProject> getEnvironmentByProjectName(Map params) {
+
+		String projectName = (String) params.get("project");
+		String productName = (String) params.get("product");
+
+		DetachedCriteria dc = DetachedCriteria.forClass(SlProject.class);
+		dc.add(Restrictions.eq("projectName", projectName));
+		dc.add(Restrictions.eq("productName", productName));
+		List<SlProject> slProjects = slProjectDao.find(dc);
+
+		return slProjects;
+	}
+
+	@DataProvider
+	public Collection<String> getAllProjectName() {
+
+		Query queryResult = slProjectDao.createQuery("select DISTINCT projectName from SlProject");
+
+		return queryResult.list();
+	}
      
     @DataProvider
     public void getAllForPage(Page<SlProject> page){

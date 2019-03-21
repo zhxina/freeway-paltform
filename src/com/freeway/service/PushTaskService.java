@@ -75,10 +75,12 @@ public class PushTaskService {
 		}
 
 		DetachedCriteria dc = DetachedCriteria.forClass(SlProject.class);
-		SlProject project1 = (SlProject) param.get("project");
-		SlProject project2 = (SlProject) param.get("environment");
-		dc.add(Restrictions.eq("projectCode", project1.getProjectCode()));
-		dc.add(Restrictions.eq("environment", project2.getEnvironment()));
+		String projectName = (String) param.get("project");
+		String environment = (String) param.get("environment");
+		String productName = (String) param.get("product");
+		dc.add(Restrictions.eq("projectName", projectName));
+		dc.add(Restrictions.eq("environment", environment));
+		dc.add(Restrictions.eq("productName", productName));
 		List<SlProject> slProjects = slProjectDao.find(dc);
 
 		if (slProjects.size() == 1)
@@ -110,8 +112,8 @@ public class PushTaskService {
 			slPushRecord.setOrderId(creditUserOrder.getOrderId());
 			slPushRecord.setContent(jsonObject.toJSONString());
 			slPushRecord.setCreatedAt(new Date());
-			slPushRecord.setEnvironment(project2.getEnvironment());
-			slPushRecord.setProject(project1.getProjectCode());
+			slPushRecord.setEnvironment(slProject.getEnvironment());
+			slPushRecord.setProject(slProject.getProjectCode());
 			slPushRecord.setResult(response);
 			slPushRecordDao.save(slPushRecord);
 		} else {

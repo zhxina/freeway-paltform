@@ -11,6 +11,8 @@
     <DataType name="Project" parent="SlProject">
       <Property name="defaultDisplayProperty">projectName</Property>
       <PropertyDef name="projectName"/>
+      <PropertyDef name="environment"/>
+      <PropertyDef name="productName"/>
     </DataType>
     <DataType name="Environment" parent="SlProject">
       <Property name="defaultDisplayProperty">environment</Property>
@@ -19,13 +21,19 @@
   </Model>
   <View>
     <AutoForm id="autoformPushTask" layoutConstraint="padding:5">
-      <Property name="cols">260,260,260,60,60,60,60</Property>
+      <Property name="cols">300,300,300,300,50,50</Property>
       <Property name="labelAlign">left</Property>
       <Property name="createPrivateDataSet">true</Property>
       <AutoFormElement id="autoformelementProject">
-        <Property name="trigger">datasetdropdownProject</Property>
+        <Property name="trigger">listdropdownProject</Property>
         <Property name="label">项目：</Property>
         <Property name="name">project</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">product</Property>
+        <Property name="label">产品：</Property>
+        <Property name="trigger">datasetdropdownProduct</Property>
         <Editor/>
       </AutoFormElement>
       <AutoFormElement id="autoformelementEnvironment">
@@ -135,20 +143,6 @@ if(result.result){&#xD;
 datasetPushRecord.flushAsync();</ClientEvent>
       <Property name="service">pushTaskService#pushOrder</Property>
     </AjaxAction>
-    <DataSetDropDown id="datasetdropdownProject">
-      <Property name="dataSet">datasetProject</Property>
-    </DataSetDropDown>
-    <DataSetDropDown id="datasetdropdownEnvironment">
-      <Property name="dataSet">datasetEnvironment</Property>
-    </DataSetDropDown>
-    <DataSet id="datasetProject">
-      <Property name="dataProvider">projectService#getAll</Property>
-      <Property name="dataType">[Project]</Property>
-    </DataSet>
-    <DataSet id="datasetEnvironment">
-      <Property name="dataProvider">projectService#getAll</Property>
-      <Property name="dataType">[Environment]</Property>
-    </DataSet>
     <AjaxAction id="ajaxactionPushUser">
       <ClientEvent name="beforeExecute" signature="self,arg,autoformPushTask">var entity = autoformPushTask.get(&quot;entity&quot;);&#xD;
 var project = entity.get(&quot;project&quot;);&#xD;
@@ -174,5 +168,44 @@ if(result.result){&#xD;
 datasetPushRecord.flushAsync();</ClientEvent>
       <Property name="service">pushTaskService#pushOrder</Property>
     </AjaxAction>
+    <ListDropDown id="listdropdownProject">
+      <ClientEvent name="beforeExecute"></ClientEvent>
+      <Property name="items">${dorado.getDataProvider(&quot;projectService#getAllProjectName&quot;).getResult()}</Property>
+      <Property name="dynaFilter">true</Property>
+    </ListDropDown>
+    <DataSetDropDown id="datasetdropdownEnvironment">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoformPushTask,datasetEnvironment">var entity = autoformPushTask.get(&quot;entity&quot;);&#xD;
+datasetEnvironment.set(&quot;parameter&quot;, entity);&#xD;
+datasetEnvironment.flushAsync();</ClientEvent>
+      <Property name="dataSet">datasetEnvironment</Property>
+      <Property name="displayProperty">environment</Property>
+      <Property name="assignmentMap">environment</Property>
+    </DataSetDropDown>
+    <DataSet id="datasetEnvironment">
+      <Property name="dataProvider">projectService#getEnvironmentByProjectName</Property>
+      <Property name="dataType">[Project]</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="cacheable">true</Property>
+    </DataSet>
+    <DataSetDropDown id="datasetdropdownProduct">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoformPushTask,datasetProduct">var entity = autoformPushTask.get(&quot;entity&quot;);&#xD;
+var projectName = entity.get(&quot;project&quot;);&#xD;
+if (projectName) {&#xD;
+    datasetProduct.set(&quot;parameter&quot;, projectName);&#xD;
+    datasetProduct.flush();&#xD;
+}else{&#xD;
+	arg.processDefault=false;&#xD;
+}&#xD;
+</ClientEvent>
+      <Property name="dataSet">datasetProduct</Property>
+      <Property name="displayProperty">productName</Property>
+      <Property name="assignmentMap">product=productName</Property>
+    </DataSetDropDown>
+    <DataSet id="datasetProduct">
+      <Property name="dataProvider">projectService#getProductsByProjectName</Property>
+      <Property name="dataType">[Project]</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="cacheable">true</Property>
+    </DataSet>
   </View>
 </ViewConfig>
