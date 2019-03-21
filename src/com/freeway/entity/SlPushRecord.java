@@ -48,12 +48,23 @@ public class SlPushRecord implements Serializable {
 	 */
 	private Date createdAt;
 
+	/**
+	 * user_id:
+	 */
+	private int userId;
+
+	/**
+	 * product_name:
+	 */
+	private String productName;
+
 	public SlPushRecord() {
 		super();
 	}
 
 	public SlPushRecord(int id, int orderId, String content, String result,
-			String project, String environment, Date createdAt) {
+			String project, String environment, Date createdAt, int userId,
+			String productName) {
 		super();
 		this.id = id;
 		this.orderId = orderId;
@@ -62,6 +73,8 @@ public class SlPushRecord implements Serializable {
 		this.project = project;
 		this.environment = environment;
 		this.createdAt = createdAt;
+		this.userId = userId;
+		this.productName = productName;
 	}
 
 	public void setId(int id) {
@@ -130,11 +143,29 @@ public class SlPushRecord implements Serializable {
 		return createdAt;
 	}
 
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	@Column(name = "user_id", nullable = false)
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	@Column(name = "product_name", length = 20, nullable = false)
+	public String getProductName() {
+		return productName;
+	}
+
 	public String toString() {
 		return "SlPushRecord [id=" + id + ",orderId=" + orderId + ",content="
 				+ content + ",result=" + result + ",project=" + project
 				+ ",environment=" + environment + ",createdAt=" + createdAt
-				+ "]";
+				+ ",userId=" + userId + ",productName=" + productName + "]";
 	}
 
 }
