@@ -14,7 +14,7 @@
     </DataSet>
     <AutoForm id="autoformCondition">
       <Property name="createPrivateDataSet">true</Property>
-      <Property name="cols">350,350,350,350,350</Property>
+      <Property name="cols">350,350,350</Property>
       <Property name="labelSeparator">：</Property>
       <AutoFormElement>
         <Property name="name">projectName</Property>
@@ -22,18 +22,8 @@
         <Editor/>
       </AutoFormElement>
       <AutoFormElement>
-        <Property name="name">projectCode</Property>
-        <Property name="label">项目代码</Property>
-        <Editor/>
-      </AutoFormElement>
-      <AutoFormElement>
         <Property name="label">产品名称</Property>
         <Property name="name">productName</Property>
-        <Editor/>
-      </AutoFormElement>
-      <AutoFormElement>
-        <Property name="name">productCode</Property>
-        <Property name="label">产品代码</Property>
         <Editor/>
       </AutoFormElement>
       <AutoFormElement>
