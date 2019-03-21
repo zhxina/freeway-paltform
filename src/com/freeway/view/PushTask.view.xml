@@ -79,10 +79,22 @@
           <Property name="align">center</Property>
           <Property name="width">150</Property>
         </DataColumn>
+        <DataColumn name="userId">
+          <Property name="property">userId</Property>
+          <Property name="align">center</Property>
+          <Property name="caption">用户Id</Property>
+          <Property name="width">150</Property>
+        </DataColumn>
         <DataColumn name="project">
           <Property name="property">project</Property>
           <Property name="caption">项目名称</Property>
           <Property name="align">center</Property>
+          <Property name="width">150</Property>
+        </DataColumn>
+        <DataColumn name="productName">
+          <Property name="property">productName</Property>
+          <Property name="align">center</Property>
+          <Property name="caption">产品名称</Property>
           <Property name="width">150</Property>
         </DataColumn>
         <DataColumn name="environment">

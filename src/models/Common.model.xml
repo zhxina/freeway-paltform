@@ -172,6 +172,12 @@
     <PropertyDef name="createdAt">
       <Property name="dataType">Date</Property>
     </PropertyDef>
+    <PropertyDef name="userId">
+      <Property name="dataType">int</Property>
+    </PropertyDef>
+    <PropertyDef name="productName">
+      <Property/>
+    </PropertyDef>
   </DataType>
   <DataType name="SlMockUser">
     <Property name="matchType">com.freeway.entity.SlMockUser</Property>
@@ -224,7 +230,7 @@
       <Property></Property>
     </PropertyDef>
     <PropertyDef name="productName">
-      <Property/>
+      <Property></Property>
     </PropertyDef>
   </DataType>
   <DataType name="SlEngineResult">

@@ -47,7 +47,8 @@ public class PushTaskService {
 		// DetachedCriteria.forClass(SlPushRecord.class);
 		// criteria.addOrder(org.hibernate.criterion.Order.desc("id"));
 
-		org.hibernate.Query query = slPushRecordDao.createQuery("from SlPushRecord order by id desc");
+		org.hibernate.Query query = slPushRecordDao
+				.createQuery("from SlPushRecord order by id desc");
 		query.setMaxResults(25);
 		return query.list();
 	}
@@ -83,22 +84,24 @@ public class PushTaskService {
 		dc.add(Restrictions.eq("productName", productName));
 		List<SlProject> slProjects = slProjectDao.find(dc);
 
-		if (slProjects.size() == 1)
-		{
+		if (slProjects.size() == 1) {
 			SlProject slProject = slProjects.get(0);
 			StringBuffer urlBuffer = new StringBuffer();
 			urlBuffer.append(slProject.getUrl());
 			urlBuffer.append("/frontend/v2/engine/task");
 			urlBuffer.append("?");
-			urlBuffer.append(String.format("%s=%s&", "projectCode", slProject.getProjectCode()));
-			urlBuffer.append(String.format("%s=%s&", "productCode", slProject.getProductCode()));
+			urlBuffer.append(String.format("%s=%s&", "projectCode",
+					slProject.getProjectCode()));
+			urlBuffer.append(String.format("%s=%s&", "productCode",
+					slProject.getProductCode()));
 			urlBuffer.append(String.format("%s=%s", "phaseCode", phase));
 			JSONObject jsonObject = (JSONObject) JSON.toJSON(creditUserOrder);
 			if (phase.equals("PRELOAN")) {
 				jsonObject.remove("orderId");
 			}
 
-			String response = HttpClientUtils.sendPost(urlBuffer.toString(), jsonObject);
+			String response = HttpClientUtils.sendPost(urlBuffer.toString(),
+					jsonObject);
 
 			if (response.equals("OK")) {
 				result.put("result", true);
@@ -110,10 +113,12 @@ public class PushTaskService {
 
 			SlPushRecord slPushRecord = new SlPushRecord();
 			slPushRecord.setOrderId(creditUserOrder.getOrderId());
+			slPushRecord.setUserId(creditUserOrder.getUserId());
 			slPushRecord.setContent(jsonObject.toJSONString());
 			slPushRecord.setCreatedAt(new Date());
 			slPushRecord.setEnvironment(slProject.getEnvironment());
-			slPushRecord.setProject(slProject.getProjectCode());
+			slPushRecord.setProject(slProject.getProjectName());
+			slPushRecord.setProductName(slProject.getProductName());
 			slPushRecord.setResult(response);
 			slPushRecordDao.save(slPushRecord);
 		} else {
