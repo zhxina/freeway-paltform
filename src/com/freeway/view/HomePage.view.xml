@@ -4,13 +4,30 @@
   <Context/>
   <Model/>
   <View>
-    <Label layoutConstraint="padding:10">
-      <Property name="text">Freeway测试管理平台</Property>
-      <Property name="height">40</Property>
+    <Container layout="hbox">
       <Property name="style">
-        <Property name="font-size">24px</Property>
+        <Property name="background-color">#205081</Property>
       </Property>
-    </Label>
+      <Property name="height">60</Property>
+      <Image layoutConstraint="align:left">
+        <Property name="image">images/title_logo.png</Property>
+        <Property name="stretchMode">none</Property>
+        <Property name="style">
+          <Property name="margin-left">15px</Property>
+        </Property>
+      </Image>
+      <Label>
+        <Property name="text">测试管理平台</Property>
+        <Property name="style">
+          <Property name="font-size">18px</Property>
+          <Property name="font-family">inherit</Property>
+          <Property name="color">#fff</Property>
+          <Property name="margin-top">2px</Property>
+          <Property name="margin-left">20px</Property>
+        </Property>
+        <Property name="visible">false</Property>
+      </Label>
+    </Container>
     <ToolBar>
       <ClientEvent name="onReady">view.get(&quot;^menuitem&quot;).addListener(&quot;onClick&quot;, function(self, arg, iframeMain){&#xD;
     iframeMain.set(&quot;path&quot;,self.get(&quot;userData&quot;));&#xD;
