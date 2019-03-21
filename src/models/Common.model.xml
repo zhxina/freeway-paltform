@@ -226,6 +226,9 @@
     <PropertyDef name="productName">
       <Property/>
     </PropertyDef>
+    <PropertyDef name="status">
+      <Property/>
+    </PropertyDef>
   </DataType>
   <DataType name="SlEngineResult">
     <Property name="matchType">com.freeway.entity.SlEngineResult</Property>

@@ -48,14 +48,19 @@ public class SlProject implements Serializable {
 	 */
 	private String productName;
 
+	/**
+	 * status:
+	 */
+	private String status;
+
 	public SlProject() {
 
 		super();
 	}
 
-	public SlProject(int projectId, String projectName, String projectCode, String environment, String url,
-			String productCode, String productName) {
-
+	public SlProject(int projectId, String projectName, String projectCode,
+			String environment, String url, String productCode,
+			String productName, String status) {
 		super();
 		this.projectId = projectId;
 		this.projectName = projectName;
@@ -64,6 +69,7 @@ public class SlProject implements Serializable {
 		this.url = url;
 		this.productCode = productCode;
 		this.productName = productName;
+		this.status = status;
 	}
 
 	public void setProjectId(int projectId) {
@@ -135,21 +141,28 @@ public class SlProject implements Serializable {
 	}
 
 	public void setProductName(String productName) {
-
 		this.productName = productName;
 	}
 
 	@Column(name = "product_name", length = 20)
 	public String getProductName() {
-
 		return productName;
 	}
 
-	public String toString() {
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-		return "SlProject [projectId=" + projectId + ",projectName=" + projectName + ",projectCode=" + projectCode
-				+ ",environment=" + environment + ",url=" + url + ",productCode=" + productCode + ",productName="
-				+ productName + "]";
+	@Column(name = "status", length = 20, nullable = false)
+	public String getStatus() {
+		return status;
+	}
+
+	public String toString() {
+		return "SlProject [projectId=" + projectId + ",projectName="
+				+ projectName + ",projectCode=" + projectCode + ",environment="
+				+ environment + ",url=" + url + ",productCode=" + productCode
+				+ ",productName=" + productName + ",status=" + status + "]";
 	}
 
 }
