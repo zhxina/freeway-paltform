@@ -48,9 +48,11 @@ public class ProjectService {
 //            String project_id = (String)params.get("project_id");
             String projectName = (String) params.get("projectName");
             String projectCode = (String)params.get("projectCode");
+            String productName = (String)params.get("productName");
             String productCode = (String)params.get("productCode");
             String environment = (String)params.get("environment");
-            String url = (String)params.get("url");
+//            String status = (String)params.get("status");
+//            String url = (String)params.get("url");
              
             String whereCase = "";
 //            if (StringHelper.isNotEmpty(project_id)) {
@@ -65,6 +67,10 @@ public class ProjectService {
                 whereCase += " AND projectCode like '%" + projectCode + "%' ";
             }
              
+            if (StringHelper.isNotEmpty(productName)) {
+                whereCase += " AND productName like '%" + productName + "%' ";
+            }
+            
             if (StringHelper.isNotEmpty(productCode)) {
                 whereCase += " AND productCode like '%" + productCode + "%' ";
             }
@@ -72,10 +78,14 @@ public class ProjectService {
             if (StringHelper.isNotEmpty(environment)) {
                 whereCase += " AND environment like '%" + environment + "%' ";
             }
-             
-            if (StringHelper.isNotEmpty(url)) {
-                whereCase += " AND url like '%" + url + "%' ";
-            }
+            
+//            if (StringHelper.isNotEmpty(status)) {
+//                whereCase += " AND status like '%" + status + "%' ";
+//            }
+//             
+//            if (StringHelper.isNotEmpty(url)) {
+//                whereCase += " AND url like '%" + url + "%' ";
+//            }
             slProjectDao.find(page, " from SlProject where 1=1 " + whereCase);
         } else
         	slProjectDao.getAll(page);
@@ -86,4 +96,3 @@ public class ProjectService {
     	slProjectDao.persistEntities(slProject);
     }
 }
-

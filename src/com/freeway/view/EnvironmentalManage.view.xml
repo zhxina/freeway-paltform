@@ -14,7 +14,7 @@
     </DataSet>
     <AutoForm id="autoformCondition">
       <Property name="createPrivateDataSet">true</Property>
-      <Property name="cols">350,350,350,350</Property>
+      <Property name="cols">350,350,350,350,350</Property>
       <Property name="labelSeparator">：</Property>
       <AutoFormElement>
         <Property name="name">projectName</Property>
@@ -24,6 +24,11 @@
       <AutoFormElement>
         <Property name="name">projectCode</Property>
         <Property name="label">项目代码</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="label">产品名称</Property>
+        <Property name="name">productName</Property>
         <Editor/>
       </AutoFormElement>
       <AutoFormElement>
@@ -87,6 +92,11 @@ dsProjects.set(&quot;parameter&quot;,entity).flushAsync();</ClientEvent>
         <Property name="caption">项目代码</Property>
         <Property name="align">center</Property>
       </DataColumn>
+      <DataColumn name="productName">
+        <Property name="property">productName</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">产品名称</Property>
+      </DataColumn>
       <DataColumn name="productCode">
         <Property name="property">productCode</Property>
         <Property name="caption">产品代码</Property>
@@ -97,23 +107,31 @@ dsProjects.set(&quot;parameter&quot;,entity).flushAsync();</ClientEvent>
         <Property name="caption">项目环境</Property>
         <Property name="align">center</Property>
       </DataColumn>
+      <DataColumn name="status">
+        <Property name="property">status</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">状态</Property>
+      </DataColumn>
       <DataColumn name="url">
         <Property name="property">url</Property>
         <Property name="caption">域名地址</Property>
       </DataColumn>
     </DataGrid>
     <UpdateAction id="actionUpdate">
+      <ClientEvent name="beforeExecute" signature="self,arg,autoformproject">var entity = autoformproject.get(&quot;entity&quot;);&#xD;
+var status = entity.get(&quot;status&quot;);&#xD;
+entity.set(&quot;status&quot;,&quot;0&quot;);&#xD;
+self.set(&quot;parameter&quot;,entity);</ClientEvent>
       <Property name="executingMessage">正在保存...</Property>
       <Property name="successMessage">保存成功!</Property>
       <Property name="dataResolver">projectService#saveAll</Property>
-      <Property name="hotkey">ctrl+s</Property>
       <UpdateItem>
         <Property name="dataSet">dsProjects</Property>
       </UpdateItem>
     </UpdateAction>
     <Dialog id="dialogEdit">
       <Property name="caption">环境详情</Property>
-      <Property name="height">250</Property>
+      <Property name="height">300</Property>
       <Property name="width">350</Property>
       <Buttons>
         <Button id="buttonSave">
@@ -145,6 +163,11 @@ dialogEdit.hide();</ClientEvent>
           <AutoFormElement>
             <Property name="name">projectCode</Property>
             <Property name="label">项目代码</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="label">产品名称</Property>
+            <Property name="name">productName</Property>
             <Editor/>
           </AutoFormElement>
           <AutoFormElement>

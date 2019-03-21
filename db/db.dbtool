@@ -1419,11 +1419,134 @@
       <x>5</x>
       <y>5</y>
       <width>350</width>
+      <height>173</height>
+      <name>sl_project</name>
+      <label>sl_project</label>
+      <comment/>
+      <column id="81">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>true</pk>
+         <fk>false</fk>
+         <autoIncrement>true</autoIncrement>
+         <name>project_id</name>
+         <label>project_id</label>
+         <type>INT</type>
+         <length>10</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>true</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="82">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>project_name</name>
+         <label>project_name</label>
+         <type>VARCHAR</type>
+         <length>50</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="83">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>project_code</name>
+         <label>project_code</label>
+         <type>VARCHAR</type>
+         <length>100</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="84">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>environment</name>
+         <label>environment</label>
+         <type>VARCHAR</type>
+         <length>45</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="85">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>url</name>
+         <label>url</label>
+         <type>VARCHAR</type>
+         <length>500</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="86">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>product_code</name>
+         <label>product_code</label>
+         <type>VARCHAR</type>
+         <length>50</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+   </table>
+   <table id="87">
+      <x>5</x>
+      <y>5</y>
+      <width>350</width>
       <height>369</height>
       <name>sl_engine_result</name>
       <label>sl_engine_result</label>
       <comment/>
-      <column id="81">
+      <column id="88">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1442,7 +1565,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="82">
+      <column id="89">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1461,7 +1584,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="83">
+      <column id="90">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1480,7 +1603,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="84">
+      <column id="91">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1499,7 +1622,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="85">
+      <column id="92">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1518,7 +1641,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="86">
+      <column id="93">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1537,7 +1660,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="87">
+      <column id="94">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1556,7 +1679,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="88">
+      <column id="95">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1575,7 +1698,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="89">
+      <column id="96">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1594,7 +1717,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="90">
+      <column id="97">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1613,7 +1736,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="91">
+      <column id="98">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1632,7 +1755,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="92">
+      <column id="99">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1651,7 +1774,7 @@
          <defaultValue/>
          <comment/>
       </column>
-      <column id="93">
+      <column id="100">
          <x>0</x>
          <y>0</y>
          <width>350</width>
@@ -1668,6 +1791,290 @@
          <notNull>false</notNull>
          <unique>false</unique>
          <defaultValue/>
+         <comment/>
+      </column>
+   </table>
+   <table id="101">
+      <x>5</x>
+      <y>5</y>
+      <width>350</width>
+      <height>173</height>
+      <name>sl_project</name>
+      <label>sl_project</label>
+      <comment/>
+      <column id="102">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>true</pk>
+         <fk>false</fk>
+         <autoIncrement>true</autoIncrement>
+         <name>project_id</name>
+         <label>project_id</label>
+         <type>INT</type>
+         <length>10</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>true</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="103">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>project_name</name>
+         <label>project_name</label>
+         <type>VARCHAR</type>
+         <length>50</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="104">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>project_code</name>
+         <label>project_code</label>
+         <type>VARCHAR</type>
+         <length>100</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="105">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>environment</name>
+         <label>environment</label>
+         <type>VARCHAR</type>
+         <length>45</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="106">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>url</name>
+         <label>url</label>
+         <type>VARCHAR</type>
+         <length>500</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="107">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>product_code</name>
+         <label>product_code</label>
+         <type>VARCHAR</type>
+         <length>50</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+   </table>
+   <table id="108">
+      <x>5</x>
+      <y>5</y>
+      <width>350</width>
+      <height>229</height>
+      <name>sl_project</name>
+      <label>sl_project</label>
+      <comment/>
+      <column id="109">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>true</pk>
+         <fk>false</fk>
+         <autoIncrement>true</autoIncrement>
+         <name>project_id</name>
+         <label>project_id</label>
+         <type>INT</type>
+         <length>10</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>true</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="110">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>project_name</name>
+         <label>project_name</label>
+         <type>VARCHAR</type>
+         <length>50</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="111">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>project_code</name>
+         <label>project_code</label>
+         <type>VARCHAR</type>
+         <length>100</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="112">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>environment</name>
+         <label>environment</label>
+         <type>VARCHAR</type>
+         <length>45</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="113">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>url</name>
+         <label>url</label>
+         <type>VARCHAR</type>
+         <length>500</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="114">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>product_code</name>
+         <label>product_code</label>
+         <type>VARCHAR</type>
+         <length>50</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="115">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>product_name</name>
+         <label>product_name</label>
+         <type>VARCHAR</type>
+         <length>20</length>
+         <decimalLength/>
+         <defaultValue/>
+         <notNull>false</notNull>
+         <unique>false</unique>
+         <defaultValue/>
+         <comment/>
+      </column>
+      <column id="116">
+         <x>0</x>
+         <y>0</y>
+         <width>350</width>
+         <height>130</height>
+         <pk>false</pk>
+         <fk>false</fk>
+         <autoIncrement>false</autoIncrement>
+         <name>status</name>
+         <label>status</label>
+         <type>VARCHAR</type>
+         <length>20</length>
+         <decimalLength/>
+         <defaultValue>0</defaultValue>
+         <notNull>true</notNull>
+         <unique>false</unique>
+         <defaultValue>0</defaultValue>
          <comment/>
       </column>
    </table>

@@ -221,7 +221,7 @@ public class SlEngineResult implements Serializable {
 	}
 
 	public String toString() {
-		return "SlEngineResultDao [id=" + id + ",productCode=" + productCode
+		return "SlEngineResult [id=" + id + ",productCode=" + productCode
 				+ ",phase=" + phase + ",traceUid=" + traceUid + ",projectCode="
 				+ projectCode + ",userId=" + userId + ",orderId=" + orderId
 				+ ",result=" + result + ",headCode=" + headCode + ",backCode="

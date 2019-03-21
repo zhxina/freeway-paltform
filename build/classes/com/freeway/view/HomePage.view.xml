@@ -39,16 +39,17 @@ view.get(&quot;^logout&quot;).addListener(&quot;onClick&quot;, function(self, ar
           <Property name="userData">com.freeway.view.MockUserManage.d</Property>
         </MenuItem>
         <MenuItem>
-          <Property name="caption">环境管理</Property>
+          <Property name="caption">项目管理</Property>
+          <Property name="userData">com.freeway.view.EnvironmentalManage.d</Property>
+          <Property name="tags">menuitem</Property>
         </MenuItem>
         <MenuItem>
           <Property name="caption">报告管理</Property>
         </MenuItem>
         <MenuItem>
           <Property name="caption">回调记录</Property>
-        </MenuItem>
-        <MenuItem>
-          <Property name="caption">token管理</Property>
+          <Property name="tags">menuitem</Property>
+          <Property name="userData">com.freeway.view.CallbackResult.d</Property>
         </MenuItem>
       </MenuButton>
       <MenuButton>
